@@ -43,7 +43,7 @@ public class GetCodeByName {
         response = client.execute(post);
         System.out.println(response.toString());
         JSONObject returnObject = parseInputStream(response);
-        CodeDomainParser code = jsonParse.parseJsonArray(returnObject);
+        CodeDomainParser code = jsonParse.parseJsonObject(returnObject);
         code.printAll();
 
     }

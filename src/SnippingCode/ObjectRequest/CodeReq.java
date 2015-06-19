@@ -16,6 +16,11 @@ public class CodeReq {
     String password;
     String version;
 
+    public String getUrlReq(){
+        return "name="+name+"&username="+username+"&password="+password+"&version="+version;
+
+    }
+
     public CodeReq(Code item, String username, String password) {
         this.name = item.getName();
         version = item.getVersion();

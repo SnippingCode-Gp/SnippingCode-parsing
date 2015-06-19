@@ -15,7 +15,7 @@ public class ParseJsonObject {
 		}
 	}
 
-	public CodeDomainParser parseJsonArray(JSONObject jsonObject) {
+	public CodeDomainParser parseJsonObject(JSONObject jsonObject) {
 		if(jsonObject == null){
 			return null;
 		}
