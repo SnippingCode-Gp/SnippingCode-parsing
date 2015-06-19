@@ -4,7 +4,7 @@ import SnippingCode.Domain.Code;
 import SnippingCode.JsonParser.ParseJsonObject;
 import SnippingCode.ObjectRequest.CodeReq;
 import SnippingCode.Parsing.Parsing;
-import SnippingCode.Service.HttpURLConnectionExample;
+import SnippingCode.Service.HttpUrlCon;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class Main {
         for(Code item : codes){
 
             CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
-            HttpURLConnectionExample http = new HttpURLConnectionExample();
+            HttpUrlCon http = new HttpUrlCon();
             System.out.println("\nTesting 2 - Send Http POST request");
             try {
                 String var = http.excutePost(codeReq);

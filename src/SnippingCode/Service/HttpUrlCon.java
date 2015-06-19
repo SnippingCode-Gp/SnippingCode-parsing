@@ -11,7 +11,7 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
  
-public class HttpURLConnectionExample {
+public class HttpUrlCon {
 
     private final String url = "http://localhost:8080/CodeSnipping/File/getCodeByName";
     private HttpURLConnection connection = null;
