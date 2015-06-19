@@ -4,7 +4,6 @@ import SnippingCode.Domain.Code;
 import SnippingCode.JsonParser.ParseJsonObject;
 import SnippingCode.ObjectRequest.CodeReq;
 import SnippingCode.Parsing.Parsing;
-import SnippingCode.Service.GetCodeByName;
 import SnippingCode.Service.HttpURLConnectionExample;
 import org.json.JSONObject;
 
@@ -16,7 +15,6 @@ import java.util.List;
 public class Main {
 
     static Parsing parsing;
-    static GetCodeByName getCode;
     static ParseJsonObject parseJsonObject;
 
     public static void main(String [ ] args){

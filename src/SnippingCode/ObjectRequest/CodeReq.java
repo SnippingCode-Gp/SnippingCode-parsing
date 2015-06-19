@@ -1,8 +1,6 @@
 package SnippingCode.ObjectRequest;
 
 import SnippingCode.Domain.Code;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,12 +58,4 @@ public class CodeReq {
         this.version = version;
     }
 
-    public List<NameValuePair> createParam(){
-        List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-        params.add(new BasicNameValuePair("username", username));
-        params.add(new BasicNameValuePair("password", password));
-        params.add(new BasicNameValuePair("name", name));
-        params.add(new BasicNameValuePair("version", version));
-        return params;
-    }
 }

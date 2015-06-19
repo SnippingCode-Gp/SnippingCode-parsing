@@ -10,14 +10,12 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../SnippingCode-EclipsePlugin/lib" />
+          <root url="jar://$MODULE_DIR$/../SnippingCode-Server/lib/java-json.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../SnippingCode-EclipsePlugin/lib" />
+          <root url="jar://$MODULE_DIR$/../SnippingCode-Server/lib/java-json.jar!/" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../SnippingCode-EclipsePlugin/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../SnippingCode-EclipsePlugin/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
