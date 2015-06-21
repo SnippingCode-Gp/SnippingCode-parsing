@@ -25,6 +25,7 @@ public class ParseJsonObject {
             codeDomainParser.setName(jsonObject.getString("name"));
             codeDomainParser.setType(jsonObject.getString("type"));
             codeDomainParser.setDescription(jsonObject.getString("description"));
+            codeDomainParser.setTags(jsonObject.getString("tags"));
         } catch (JSONException e) {
             System.out.println(e.toString());
         }

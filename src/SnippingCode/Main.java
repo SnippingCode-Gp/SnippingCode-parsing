@@ -33,12 +33,12 @@ public class Main {
             System.out.println("\nTesting 2 - Send Http POST request");
             try {
                 String var = http.excutePost(codeReq);
+                System.out.println(var);
                 JSONObject jsonObject = new JSONObject(var);
                 parseJsonObject.parseJsonObject(jsonObject).printAll(); // return codeDomainParser
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Accepted");
 
         }
 
