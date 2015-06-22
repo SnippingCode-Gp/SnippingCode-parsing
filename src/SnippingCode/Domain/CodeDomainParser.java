@@ -16,6 +16,15 @@ public class CodeDomainParser implements Serializable {
     private String description;
     private String tags;
     private Set<String> tagSet;
+    private String version;
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public Set<String> getTagSet() {
         return tagSet;
