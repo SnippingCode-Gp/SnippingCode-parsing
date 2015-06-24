@@ -57,6 +57,5 @@ public class Main {
 
         codeParsing = new CodeParsing(pathCode);
         codeParsing.parse().printAll();
-    // tmp
     }
 }
