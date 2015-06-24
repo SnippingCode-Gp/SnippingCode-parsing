@@ -57,7 +57,10 @@ public class Main {
 
         codeParsing = new CodeParsing(pathCode);
         codeParsing.parse().printAll();
+<<<<<<< HEAD
         //terst
+=======
+>>>>>>> 3a8d93ea08079fc3a00ff61459ba28485ed711e9
 
     }
 }
