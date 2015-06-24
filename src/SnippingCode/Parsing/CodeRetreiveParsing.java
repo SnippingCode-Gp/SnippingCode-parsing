@@ -12,11 +12,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parsing {
+public class CodeRetreiveParsing {
     private String path;
     private List<Code> codes;
 
-    public Parsing (String path){
+    public CodeRetreiveParsing(String path){
         this.path = path;
     }
 

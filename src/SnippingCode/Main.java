@@ -4,16 +4,13 @@ import SnippingCode.Domain.Code;
 import SnippingCode.Domain.CodeDomainParser;
 import SnippingCode.JsonParser.ParseJsonObject;
 import SnippingCode.ObjectRequest.CodeReq;
-import SnippingCode.Parsing.Parsing;
+import SnippingCode.Parsing.CodeParsing;
+import SnippingCode.Parsing.CodeRetreiveParsing;
 import SnippingCode.Service.HttpUrlCon;
 import SnippingCode.Service.SaveCodeToFile;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
 
-
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +18,11 @@ import java.util.List;
  * Created by nasser on 17/06/15.
  */
 public class Main {
-    static Parsing parsing;
+    static CodeRetreiveParsing codeRetreiveParsing;
     static ParseJsonObject parseJsonObject;
     static SaveCodeToFile saveCodeToFile;
     static ArrayList<CodeDomainParser> codeDomainParsers;
+    static CodeParsing codeParsing;
 
     public static void main(String [ ] args){
 
@@ -33,28 +31,31 @@ public class Main {
 
         codeDomainParsers = new ArrayList<CodeDomainParser>();
 
-        // parsing xml
-        String path="/home/nasser/Desktop/Project/SnippingCode-parsing/src/SnippingCode/test.xml";
-        parsing = new Parsing(path);
-        List<Code> codes = parsing.parse();
+        // codeRetreiveParsing xml
+        String pathTest = "/home/nasser/Desktop/Project/SnippingCode-parsing/src/SnippingCode/test.xml";
+        String pathCode = "/home/nasser/Desktop/Project/SnippingCode-parsing/src/SnippingCode/ahmed.xml";
 
-        // get from server
-        for(Code item : codes){
-            CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
-            HttpUrlCon http = new HttpUrlCon();
-            try {
-                String var = http.excutePost(codeReq);
-                JSONObject jsonObject = new JSONObject(var);
-                codeDomainParsers.add(parseJsonObject.parseJsonObject(jsonObject)); // return codeDomainParser
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        codeRetreiveParsing = new CodeRetreiveParsing(pathTest);
+//        List<Code> codes = codeRetreiveParsing.parse();
+//
+//        // get from server
+//        for(Code item : codes){
+//            CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
+//            HttpUrlCon http = new HttpUrlCon();
+//            try {
+//                String var = http.excutePost(codeReq);
+//                JSONObject jsonObject = new JSONObject(var);
+//                codeDomainParsers.add(parseJsonObject.parseJsonObject(jsonObject)); // return codeDomainParser
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        for (CodeDomainParser code : codeDomainParsers){
+//            saveCodeToFile.saveCodeToFile(code);
+//        }
 
-        for (CodeDomainParser code : codeDomainParsers){
-            System.out.println("first code" + code.getName());
-            saveCodeToFile.saveCodeToFile(code);
-        }
-
+        codeParsing = new CodeParsing(pathCode);
+        codeParsing.parse().printAll();
     }
 }

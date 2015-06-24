@@ -22,6 +22,15 @@ public class CodeDomainParser implements Serializable {
         return version;
     }
 
+    public void addStringToSet(String x){
+        if(tagSet == null){
+            tagSet = new HashSet<String>();
+            tags = "";
+        }
+        tagSet.add(x);
+        tags = tags + x + ",";
+    }
+
     public void setVersion(String version) {
         this.version = version;
     }
@@ -86,7 +95,7 @@ public class CodeDomainParser implements Serializable {
 
     public void setTags(String tags) {
         this.tags = tags;
-        parseStringTagsToSet();
+//        parseStringTagsToSet();
     }
 
     public void printAll() {

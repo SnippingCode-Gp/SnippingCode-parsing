@@ -5,6 +5,9 @@ package SnippingCode.Service;
  */
 
 import SnippingCode.Domain.CodeDomainParser;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.*;
 
@@ -26,9 +29,9 @@ public class SaveCodeToFile {
     public static String name = "name";
     public static String version = "version";
     public static String tags = "tags";
-    public static String tag = "tag";
     public static String description = "description";
     public static String codeBody = "codeBody";
+    public static String type = "type";
 
     private String OperatingSystemVersion(){
         return System.getProperty("os.name");
@@ -91,23 +94,29 @@ public class SaveCodeToFile {
     public boolean saveCodeToFile(CodeDomainParser codeDomainParser){
         PrintWriter out = null;
         try {
-            out = new PrintWriter(pathLinuxCode + codeDomainParser.getName() + ".xml");
+            out = new PrintWriter(pathLinuxCode + codeDomainParser.getName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
         }
-        System.out.println("start xml");
-        out.println("<"+code+">");
-        out.println("<"+name+">" + codeDomainParser.getName() + "</"+name+">");
-        out.println("<"+version+">"+codeDomainParser.getVersion()+"</"+version+">");
-        out.println("<"+tags+">");
-        for(String t : codeDomainParser.getTagSet())
-            out.println("<"+tag+">"+t+"</"+tag+">");
-        out.println("</"+tags+">");
-        out.println("<"+description+">"+codeDomainParser.getDescription()+"</"+description+">");
-        out.println("<"+codeBody+">"+codeDomainParser.getCode()+"</"+codeBody+">");
-        out.println("</"+code+">");
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put(name , codeDomainParser.getName());
+            obj.put(type , codeDomainParser.getType());
+            obj.put(version , codeDomainParser.getVersion());
+            obj.put(description , codeDomainParser.getDescription());
+            obj.put(codeBody , codeDomainParser.getCode());
+            JSONArray jsonArray = new JSONArray();
 
+            for(String t : codeDomainParser.getTagSet())
+                jsonArray.put(t);
+
+            obj.put(tags , jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        out.println(obj.toString());
         out.close();
         return true;
     }
