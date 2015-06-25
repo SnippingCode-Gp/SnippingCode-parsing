@@ -36,6 +36,10 @@ public class CodeDomainParser implements Serializable {
     }
 
     public Set<String> getTagSet() {
+        if(tags.equals("") || tags.equals(",")){
+            return null;
+        }
+        parseStringTagsToSet();
         return tagSet;
     }
 

@@ -32,12 +32,11 @@ public class Main {
         codeDomainParsers = new ArrayList<CodeDomainParser>();
 
         // codeRetreiveParsing xml
-        String pathTest = "/home/nasser/Desktop/Project/SnippingCode-parsing/src/SnippingCode/test.xml";
-        String pathCode = "/home/nasser/Desktop/Project/SnippingCode-parsing/src/SnippingCode/ahmed.xml";
+        String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
+        String pathCode = "/home/nasser/Desktop/Project/SnippingCode-Parsing/ahmed.xml";
 
         codeRetreiveParsing = new CodeRetreiveParsing(pathTest);
         List<Code> codes = codeRetreiveParsing.parse();
-
         // get from server
         for(Code item : codes){
             CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
@@ -54,7 +53,7 @@ public class Main {
         for (CodeDomainParser code : codeDomainParsers){
             saveCodeToFile.saveCodeToFile(code);
         }
-
+//
         codeParsing = new CodeParsing(pathCode);
         codeParsing.parse().printAll();
     }

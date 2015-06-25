@@ -108,6 +108,7 @@ public class SaveCodeToFile {
             obj.put(codeBody , codeDomainParser.getCode());
             JSONArray jsonArray = new JSONArray();
 
+//            System.out.println(codeDomainParser.getTagSet().size());
             for(String t : codeDomainParser.getTagSet())
                 jsonArray.put(t);
 
