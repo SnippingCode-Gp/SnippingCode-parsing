@@ -53,7 +53,7 @@ public class Main {
         for (CodeDomainParser code : codeDomainParsers){
             saveCodeToFile.saveCodeToFile(code);
         }
-//
+
         codeParsing = new CodeParsing(pathCode);
         codeParsing.parse().printAll();
     }

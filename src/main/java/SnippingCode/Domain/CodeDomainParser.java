@@ -22,43 +22,23 @@ public class CodeDomainParser implements Serializable {
         return version;
     }
 
-    public void addStringToSet(String x){
-        if(tagSet == null){
-            tagSet = new HashSet<String>();
-            tags = "";
-        }
-        tagSet.add(x);
-        tags = tags + x + ",";
-    }
-
     public void setVersion(String version) {
         this.version = version;
     }
 
     public Set<String> getTagSet() {
-        if(tags.equals("") || tags.equals(",")){
-            return null;
-        }
-        parseStringTagsToSet();
+        if(tags.equals("") || tags.equals(",")) return null;
+        else if (tagSet == null) parseStringTagsToSet();
         return tagSet;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+        parseStringTagsToSet();
     }
 
     public void setTagSet(Set<String> tagSet) {
         this.tagSet = tagSet;
-    }
-
-    private void parseStringTagsToSet(){
-        tagSet = new HashSet<String>();
-        if(tags.length() == 1){
-            return;
-        }
-        int i = 0 , j;
-        StringBuilder string  = new StringBuilder(tags);
-        while(!string.equals(",") && !string.toString().isEmpty()){
-            String tmp = string.substring(0 , string.indexOf(","));
-            string.delete(0 , string.indexOf(",")+1);
-            tagSet.add(tmp);
-        }
     }
 
     public String getDescription() {
@@ -97,11 +77,22 @@ public class CodeDomainParser implements Serializable {
         return tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-//        parseStringTagsToSet();
+    // private function ::
+    private void parseStringTagsToSet(){
+        tagSet = new HashSet<String>();
+        if(tags.length() == 1){
+            return;
+        }
+        int i = 0 , j;
+        StringBuilder string  = new StringBuilder(tags);
+        while(!string.equals(",") && !string.toString().isEmpty()){
+            String tmp = string.substring(0 , string.indexOf(","));
+            string.delete(0 , string.indexOf(",")+1);
+            tagSet.add(tmp);
+        }
     }
 
+    // public function ::
     public void printAll() {
         System.out.println("*************** code ***************");
         System.out.println("name{" + name + "} , type{" + type + "}");
@@ -109,5 +100,14 @@ public class CodeDomainParser implements Serializable {
         System.out.println(code);
         System.out.println("tags :: " + tags);
         System.out.println("*************** code ***************");
+    }
+
+    public void addStringToSet(String x){
+        if(tagSet == null){
+            tagSet = new HashSet<String>();
+            tags = "";
+        }
+        tagSet.add(x);
+        tags = tags + x + ",";
     }
 }

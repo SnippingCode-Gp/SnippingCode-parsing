@@ -32,18 +32,15 @@ public class CodeRetreiveParsing {
             Document doc = dBuilder.parse(fXmlFile);
 
             doc.getDocumentElement().normalize();
-            NodeList nList = doc.getElementsByTagName("code");
+            NodeList nList = doc.getElementsByTagName(Code.CODE);
 
             for (int i = 0; i < nList.getLength(); i++) {
                 Node nNode = nList.item(i);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Code code = new Code();
                     Element eElement = (Element) nNode;
-//                    System.out.println("name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
-//                    System.out.println("version : " + eElement.getElementsByTagName("version").item(0).getTextContent());
-//                    System.out.println("*******************");
-                    code.setName(eElement.getElementsByTagName("name").item(0).getTextContent());
-                    code.setVersion(eElement.getElementsByTagName("version").item(0).getTextContent());
+                    code.setName(eElement.getElementsByTagName(Code.NAME).item(0).getTextContent());
+                    code.setVersion(eElement.getElementsByTagName(Code.VERSION).item(0).getTextContent());
                     codes.add(code);
                 }
             }
@@ -53,7 +50,3 @@ public class CodeRetreiveParsing {
         return codes;
     }
 }
-
-
-// thanks to links http://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
-// http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work

@@ -7,6 +7,15 @@ public class Code {
     String name;
     String version;
 
+    public static final String CODE = "code";
+    public static final String NAME = "name";
+    public static final String TYPE = "type";
+    public static final String DESCRIPTION = "description";
+    public static final String TAGS = "tags";
+    public static final String TAG = "tag";
+    public static final String CODE_BODY = "codeBody";
+    public static final String VERSION = "version";
+
     public String getName() {
         return name;
     }

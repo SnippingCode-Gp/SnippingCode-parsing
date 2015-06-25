@@ -23,6 +23,14 @@ public class CodeParsing {
     private String path;
     private CodeDomainParser codeDomainParser;
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public CodeParsing(String path){
         this.path = path;
     }
@@ -52,28 +60,21 @@ public class CodeParsing {
 
         try {
             JSONObject object = new JSONObject(readFile());
-            name = object.getString("name");
-            description = object.getString("description");
-            codeBody = object.getString("codeBody");
-            type = object.getString("type");
-            jsonArray = object.getJSONArray("tags");
+
+            jsonArray = object.getJSONArray(Code.TAGS);
+
+            codeDomainParser.setName(object.getString(Code.NAME));
+            codeDomainParser.setType(object.getString(Code.TYPE));
+            codeDomainParser.setDescription(object.getString(Code.DESCRIPTION));
+            codeDomainParser.setCode(object.getString(Code.CODE_BODY));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        System.out.println(jsonArray.length());
-
         for(int i = 0 ; i < jsonArray.length() ; i++)
-            try {
-                codeDomainParser.addStringToSet(jsonArray.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        codeDomainParser.setName(name);
-        codeDomainParser.setType(type);
-        codeDomainParser.setDescription(description);
-        codeDomainParser.setCode(codeBody);
+            try { codeDomainParser.addStringToSet(jsonArray.getString(i));
+            } catch (JSONException e) { e.printStackTrace(); }
 
         return codeDomainParser;
     }

@@ -26,19 +26,16 @@ public class HttpUrlCon {
             URL url = new URL(targetURL);
             connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-            connection.setRequestProperty("Content-Length",
-                    Integer.toString(urlParameters.getBytes().length));
+            connection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
             connection.setRequestProperty("Content-Language", "en-US");
 
             connection.setUseCaches(false);
             connection.setDoOutput(true);
 
             //Send request
-            DataOutputStream wr = new DataOutputStream (
-                    connection.getOutputStream());
+            DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
             wr.writeBytes(urlParameters);
             wr.close();
 
@@ -57,9 +54,9 @@ public class HttpUrlCon {
             e.printStackTrace();
             return null;
         } finally {
-            if(connection != null) {
+            if(connection != null)
                 connection.disconnect();
-            }
+
         }
     }
 }
