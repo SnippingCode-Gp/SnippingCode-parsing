@@ -2,11 +2,13 @@ package SnippingCode.ObjectRequest;
 
 import SnippingCode.Domain.Code;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by nasser on 19/06/15.
+ */
+
+/**
+ * @author nasser
+ * <p> using Code Request when send Request to server</p>
  */
 public class CodeReq {
     String name;
