@@ -43,7 +43,7 @@ public class UserHttpRequest {
      * @return status code
      * @throws IOException
      */
-    public int signUpRequest() throws IOException {
+    public int signUp() throws IOException {
         return signUp(user);
     }
 
