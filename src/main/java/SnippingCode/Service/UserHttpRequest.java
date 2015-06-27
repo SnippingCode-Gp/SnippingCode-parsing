@@ -44,7 +44,7 @@ public class UserHttpRequest {
      * @throws IOException
      * @throws JSONException 
      */
-    public int signUp() throws IOException, JSONException {
+    public int signUp() throws IOException {
         return signUp(user);
     }
 
@@ -55,13 +55,18 @@ public class UserHttpRequest {
      * @throws JSONException
      * @throws IOException
      */
-    public int signUp(User usr) throws JSONException, IOException {
+    public int signUp(User usr) throws IOException {
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", usr.getFirstName());
-        jsonObject.put("username", usr.getUsername());
-        jsonObject.put("password", usr.getPassword());
-        jsonObject.put("email", usr.getEmail());
+        try {
+          jsonObject.put("name", usr.getFirstName());
+          jsonObject.put("username", usr.getUsername());
+          jsonObject.put("password", usr.getPassword());
+          jsonObject.put("email", usr.getEmail());
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
         String urlParameters = jsonObject.toString();
 
         URL url = new URL(signupRequest);
@@ -81,7 +86,7 @@ public class UserHttpRequest {
      * @throws IOException
      * @throws JSONException 
      */
-    public int login() throws IOException, JSONException {
+    public int login() throws IOException {
         return login(user);
     }
 
@@ -92,10 +97,15 @@ public class UserHttpRequest {
      * @throws IOException
      * @throws JSONException
      */
-    public int login(User usr) throws IOException, JSONException {
+    public int login(User usr) throws IOException {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("username", usr.getUsername());
-        jsonObject.put("password", usr.getPassword());
+        try {
+          jsonObject.put("username", usr.getUsername());
+          jsonObject.put("password", usr.getPassword());
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
         String urlParameters = jsonObject.toString();
 
         String requestURL = "http://localhost:8080/CodeSnipping/registration/login";
