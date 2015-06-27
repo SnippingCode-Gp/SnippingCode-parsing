@@ -1,6 +1,7 @@
 package SnippingCode.ObjectRequest;
 
 import SnippingCode.Domain.Code;
+import org.json.JSONObject;
 
 /**
  * Created by nasser on 19/06/15.
@@ -14,16 +15,19 @@ public class CodeReq {
     String name;
     String username;
     String password;
-    String version;
 
-    public String getUrlReq(){
-        return "name="+name+"&username="+username+"&password="+password+"&version="+version;
+    public JSONObject getUrlReq(){
+        JSONObject json = new JSONObject();
+
+        json.put("username" , username);
+        json.put("password" , password);
+
+        return json;
 
     }
 
     public CodeReq(Code item, String username, String password) {
         this.name = item.getName();
-        version = item.getVersion();
         this.username = username;
         this.password = password;
     }
@@ -50,14 +54,6 @@ public class CodeReq {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
 }

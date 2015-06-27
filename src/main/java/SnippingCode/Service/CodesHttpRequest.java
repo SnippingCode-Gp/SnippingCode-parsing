@@ -24,26 +24,24 @@ import org.json.JSONObject;
  */
 public class CodesHttpRequest {
 	private ParseJsonObject jsonParse = null;
-	private final String getAllCode = "http://localhost:8080/CodeSnipping/File/viewPlugin";
-    private final String getCodeByName = "http://localhost:8080/CodeSnipping/File/getCodeByName";
+    private final String getAllCode = "http://localhost:8080/CodeSnipping/File/view";
+    private final String getCodeByName = "http://localhost:8080/CodeSnipping/File/getFile";
 
     public CodesHttpRequest(){
         jsonParse = new ParseJsonObject();
     }
 
-    private HttpURLConnection configConnection(URL url , String urlParm) throws IOException {
+    private HttpURLConnection configConnection(URL url ) throws IOException {
 		HttpURLConnection con = null;
         con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type",
-				"application/x-www-form-urlencoded");
-        con.setRequestProperty("Content-Length",
-				Integer.toString(urlParm.getBytes().length));
-        con.setRequestProperty("Content-Language", "en-US");
 
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("Content-Language", "en-US");
         con.setUseCaches(false);
         con.setDoOutput(true);
-		return con;
+
+        return con;
 	}
 
     /**
@@ -54,33 +52,39 @@ public class CodesHttpRequest {
      * @throws IOException
      * @throws JSONException
      */
-	public ArrayList<Code> getAllCode(String username, String pass) throws IOException,
-			JSONException {
+    public ArrayList<Code> getAllCode(String username, String pass , String num) throws IOException,
+            JSONException {
 
-		String urlParam = "username=" + username + "&password=" + pass
-				+ "&number=0";
-		URL url = new URL(getAllCode);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", username);
+        jsonObject.put("password", pass);
 
-		HttpURLConnection connection = configConnection(url , urlParam);
+        String var = getAllCode + "/" + num + "";
 
-		// Send request
-		DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-		wr.writeBytes(urlParam);
-		wr.close();
+        URL url = new URL(var);
 
-		// Get Response
-		InputStream is = connection.getInputStream();
-		BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-		StringBuilder response = new StringBuilder();
-		String line;
-		while ((line = rd.readLine()) != null) {
-			response.append(line);
-			response.append('\r');
-		}
-		rd.close();
-		JSONArray json = new JSONArray(response.toString());
-		return jsonParse.parseJsonArray(json);
-	}
+        HttpURLConnection connection = configConnection(url);
+
+        // Send request
+        DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+        wr.writeBytes(jsonObject.toString());
+        wr.close();
+
+        // Get Response
+        InputStream is = connection.getInputStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            response.append(line);
+            response.append('\r');
+        }
+        rd.close();
+
+        JSONArray jsonArray = new JSONArray(response.toString());
+        return jsonParse.parseJsonArray(jsonArray);
+    }
+
 
     /**
      * <p> get code using its name and version </p>
@@ -89,18 +93,21 @@ public class CodesHttpRequest {
      */
     public Code getCodeByName(CodeReq codeReq) {
 
-        String targetURL = getCodeByName;
-        String urlParam = codeReq.getUrlReq();
+        String targetURL = getCodeByName + "/" + codeReq.getName();
+
+        JSONObject jsonObject= codeReq.getUrlReq();
+
         HttpURLConnection connection = null;
         try {
+
             //Create connection
             URL url = new URL(targetURL);
 
-            connection = configConnection(url , urlParam);
+            connection = configConnection(url);
 
             //Send request
             DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
-            wr.writeBytes(urlParam);
+            wr.writeBytes(jsonObject.toString());
             wr.close();
 
             //Get Response
@@ -124,5 +131,4 @@ public class CodesHttpRequest {
 
         }
     }
-
 }

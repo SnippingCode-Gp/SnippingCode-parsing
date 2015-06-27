@@ -20,7 +20,6 @@ public class Code implements Serializable {
     public static final String TAGS = "tags";
     public static final String TAG = "tag";
     public static final String CODE_BODY = "codeBody";
-    public static final String VERSION = "version";
 
 	private String name;
 	private String type;
@@ -28,15 +27,6 @@ public class Code implements Serializable {
     private String description;
     private String tags;
     private Set<String> tagSet;
-    private String version = "1.0.0.0";
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
 
     public Set<String> getTagSet() {
         if(tags.equals("") || tags.equals(",")) return null;

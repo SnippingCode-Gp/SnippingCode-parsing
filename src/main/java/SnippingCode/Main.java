@@ -17,19 +17,18 @@ import java.util.List;
  * Created by nasser on 17/06/15.
  * @author nasser
  */
+
 public class Main {
     static ParseJsonObject parseJsonObject;
     static FileOperation fileOperation;
-    static ArrayList<Code> codes;
+    static ArrayList<Code> codesArray;
     static CodesHttpRequest codesHttpRequest;
     static UserHttpRequest userHttpRequest;
 
-//        get user code from server and save to test file xml
+    //  get user code from server and save to test file xml
     public static void getUserCode(){
-        codes = new ArrayList<Code>();
-        codesHttpRequest = new CodesHttpRequest();
         try {
-            fileOperation.initXmlFile(codesHttpRequest.getAllCode("ahmed", "ahmed"));
+            fileOperation.initXmlFile(codesHttpRequest.getAllCode("ahmed", "ahmed", "0"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,18 +42,18 @@ public class Main {
     public static void getCode(){
         String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
         List<Code> codes = fileOperation.parseXmlFile(pathTest);
-
+        codesArray = new ArrayList<Code>();
         // get from server
         for(Code item : codes){
             CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
             try {
-                Main.codes.add(codesHttpRequest.getCodeByName(codeReq)); // return codeDomainParser
+                codesArray.add(codesHttpRequest.getCodeByName(codeReq)); // return codeDomainParser
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        for (Code code : Main.codes){
+        for (Code code : codesArray){
             fileOperation.saveCodeToFile(code);
         }
     }
@@ -63,11 +62,14 @@ public class Main {
         parseJsonObject = new ParseJsonObject();
         fileOperation = new FileOperation();
         userHttpRequest = new UserHttpRequest();
-//        getUserCode();
-//
-//        getCode();
-//
-//        checkParsingCode();
+        codesArray = new ArrayList<Code>();
+        codesHttpRequest = new CodesHttpRequest();
+
+        getUserCode();
+
+        getCode();
+
+        checkParsingCode();
 
         checkLogin();
     }

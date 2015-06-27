@@ -99,7 +99,6 @@ public class FileOperation {
         try {
             obj.put(Code.NAME , code.getName());
             obj.put(Code.TYPE , code.getType());
-            obj.put(Code.VERSION , code.getVersion());
             obj.put(Code.DESCRIPTION , code.getDescription());
             obj.put(Code.CODE_BODY , code.getCode());
             JSONArray jsonArray = new JSONArray();
@@ -137,7 +136,6 @@ public class FileOperation {
             for(Code code : codes) {
                 out.println("<code>");
                 out.println("<name>"+ code.getName()+"</name>");
-                out.println("<version>"+ code.getVersion()+"</version>");
                 out.println("</code>");
             }
         } catch (JSONException e) {
@@ -171,7 +169,6 @@ public class FileOperation {
                     Code code = new Code();
                     Element eElement = (Element) nNode;
                     code.setName(eElement.getElementsByTagName(Code.NAME).item(0).getTextContent());
-                    code.setVersion(eElement.getElementsByTagName(Code.VERSION).item(0).getTextContent());
                     codes.add(code);
                 }
             }
