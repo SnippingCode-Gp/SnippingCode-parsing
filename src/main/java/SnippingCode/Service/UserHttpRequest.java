@@ -3,7 +3,6 @@ package SnippingCode.Service;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import SnippingCode.Domain.User;
@@ -27,9 +26,7 @@ public class UserHttpRequest {
          this.user = user;
     }
 
-    public int signUpRequest() throws IOException {
-        return signUpRequest(user);
-    }
+
 
     private HttpURLConnection configHttpConnection (URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
@@ -41,7 +38,23 @@ public class UserHttpRequest {
         return connection;
     }
 
-    public int signUpRequest(User usr) throws JSONException, IOException {
+    /**
+     * <p> signup but User Class is send in constructor of UserHttpRequest </p>
+     * @return status code
+     * @throws IOException
+     */
+    public int signUpRequest() throws IOException {
+        return signUp(user);
+    }
+
+    /**
+     *
+     * @param usr User from Class User
+     * @return status Code
+     * @throws JSONException
+     * @throws IOException
+     */
+    public int signUp(User usr) throws JSONException, IOException {
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", usr.getFirstName());
@@ -61,7 +74,23 @@ public class UserHttpRequest {
         return connection.getResponseCode();
     }
 
-    public int loginHttpRequest(User usr) throws IOException, JSONException {
+    /**
+     * <p> login but User Class is send in constructor of UserHttpRequest</p>
+     * @return status code
+     * @throws IOException
+     */
+    public int login() throws IOException {
+        return login(user);
+    }
+
+    /**
+     *
+     * @param usr User from Class User
+     * @return status code
+     * @throws IOException
+     * @throws JSONException
+     */
+    public int login(User usr) throws IOException, JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("username", usr.getUsername());
         jsonObject.put("password", usr.getPassword());

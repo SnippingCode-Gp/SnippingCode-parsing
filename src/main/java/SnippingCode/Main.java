@@ -27,6 +27,7 @@ public class Main {
 
     //  get user code from server and save to test file xml
     public static void getUserCode(){
+
         try {
             fileOperation.initXmlFile(codesHttpRequest.getAllCode("ahmed", "ahmed", "0"));
         } catch (IOException e) {
@@ -71,6 +72,8 @@ public class Main {
 
         checkParsingCode();
 
+        checkUserSignUp();
+
         checkLogin();
     }
 
@@ -82,7 +85,7 @@ public class Main {
         user.setLastName("hamada");
         user.setPassword("ahmednasser");
         try {
-            int var = userHttpRequest.signUpRequest(user);
+            int var = userHttpRequest.signUp(user);
             System.out.println(var);
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,7 +101,7 @@ public class Main {
         user.setPassword("ahmednasser");
 
         try {
-            int var = userHttpRequest.loginHttpRequest(user);
+            int var = userHttpRequest.login(user);
             System.out.println(var);
         } catch (IOException e) {
             e.printStackTrace();
