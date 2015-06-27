@@ -42,8 +42,9 @@ public class UserHttpRequest {
      * <p> signup but User Class is send in constructor of UserHttpRequest </p>
      * @return status code
      * @throws IOException
+     * @throws JSONException 
      */
-    public int signUp() throws IOException {
+    public int signUp() throws IOException, JSONException {
         return signUp(user);
     }
 
@@ -78,8 +79,9 @@ public class UserHttpRequest {
      * <p> login but User Class is send in constructor of UserHttpRequest</p>
      * @return status code
      * @throws IOException
+     * @throws JSONException 
      */
-    public int login() throws IOException {
+    public int login() throws IOException, JSONException {
         return login(user);
     }
 
