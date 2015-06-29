@@ -132,6 +132,13 @@ public class CodesHttpRequest {
         }
     }
 
+    /**
+     *
+     * @param code Object Code
+     * @param username
+     * @param password
+     * @return true if connection done false if error happen
+     */
     public boolean uploadCode(Code code , String username , String password){
         String targetURL = upload;
 
