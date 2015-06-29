@@ -1,7 +1,12 @@
 package SnippingCode.Domain;
 
+import SnippingCode.ObjectRequest.CodeReq;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,7 +15,9 @@ import java.util.Set;
  */
 public class Code implements Serializable {
 
-	public Code() {
+
+
+    public Code() {
 
 	}
     public static final String CODE = "code";
@@ -20,6 +27,8 @@ public class Code implements Serializable {
     public static final String TAGS = "tags";
     public static final String TAG = "tag";
     public static final String CODE_BODY = "codeBody";
+    public static final String USERNAME = "username";
+    public static final String PASS = "password";
 
 	private String name;
 	private String type;
@@ -115,5 +124,30 @@ public class Code implements Serializable {
         }
         tagSet.add(tagsString);
         tags = tags + tagsString + ",";
+    }
+
+    public CodeReq changeToCodeReq(){
+        return null;
+    }
+
+    public JSONObject changeToJsonObject(String username , String password){
+        JSONObject object = new JSONObject();
+
+//        object.put("id" , "0");
+        object.put(Code.USERNAME,username);
+        object.put(Code.PASS , password);
+        object.put(Code.NAME , name);
+        object.put(Code.TYPE , type);
+        object.put(Code.CODE , code);
+        object.put(Code.DESCRIPTION , description);
+
+        JSONArray array = new JSONArray();
+        for(String t : tagSet){
+            array.put(t);
+        }
+
+        object.put(Code.TAGS , array);
+
+        return object;
     }
 }

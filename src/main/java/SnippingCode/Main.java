@@ -44,6 +44,7 @@ public class Main {
         String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
         List<Code> codes = fileOperation.parseXmlFile(pathTest);
         codesArray = new ArrayList<Code>();
+
         // get from server
         for(Code item : codes){
             CodeReq codeReq = new CodeReq(item , "ahmed" , "ahmed");
@@ -57,24 +58,6 @@ public class Main {
         for (Code code : codesArray){
             fileOperation.saveCodeToFile(code);
         }
-    }
-
-    public static void main(String [ ] args){
-        parseJsonObject = new ParseJsonObject();
-        fileOperation = new FileOperation();
-        userHttpRequest = new UserHttpRequest();
-        codesArray = new ArrayList<Code>();
-        codesHttpRequest = new CodesHttpRequest();
-
-        getUserCode();
-
-        getCode();
-
-        checkParsingCode();
-
-        checkUserSignUp();
-
-        checkLogin();
     }
 
     private static void checkUserSignUp() {
@@ -107,4 +90,39 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+    private static void uploadCode() {
+        Code code = new Code();
+        code.setName("test5");
+        code.setCode("ahmed nasser saleh");
+        code.setDescription("ay 7aga feh ay betngan");
+        code.setType("cpp & java");
+        code.setTags("BFS,DFS,MMM,DMN,");
+
+        codesHttpRequest.uploadCode(code , "ahmed" , "ahmed");
+    }
+
+    public static void main(String [ ] args){
+        parseJsonObject = new ParseJsonObject();
+        fileOperation = new FileOperation();
+        userHttpRequest = new UserHttpRequest();
+        codesArray = new ArrayList<Code>();
+        codesHttpRequest = new CodesHttpRequest();
+
+//        getUserCode();
+//
+//        getCode();
+//
+//        checkParsingCode();
+//
+//        checkUserSignUp();
+//
+//        checkLogin();
+
+        uploadCode();
+    }
+
+
+
+
 }

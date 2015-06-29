@@ -26,7 +26,7 @@ public class CodesHttpRequest {
 	private ParseJsonObject jsonParse = null;
     private final String getAllCode = "http://localhost:8080/CodeSnipping/File/view";
     private final String getCodeByName = "http://localhost:8080/CodeSnipping/File/getFile";
-
+    private final String upload = "http://localhost:8080/CodeSnipping/File/upload";
     public CodesHttpRequest(){
         jsonParse = new ParseJsonObject();
     }
@@ -130,5 +130,44 @@ public class CodesHttpRequest {
                 connection.disconnect();
 
         }
+    }
+
+    public boolean uploadCode(Code code , String username , String password){
+        String targetURL = upload;
+
+        JSONObject jsonObject= code.changeToJsonObject(username,password);
+
+        HttpURLConnection connection = null;
+        try {
+
+            //Create connection
+            URL url = new URL(targetURL);
+
+            connection = configConnection(url);
+
+            //Send request
+            DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
+            wr.writeBytes(jsonObject.toString());
+            wr.close();
+
+            //Get Response
+            InputStream is = connection.getInputStream();
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+            StringBuilder response = new StringBuilder(); // or StringBuffer if not Java 5+
+            String line;
+            while((line = rd.readLine()) != null) {
+                response.append(line);
+                response.append('\r');
+            }
+            rd.close();
+            System.out.println(response.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if(connection != null)
+                connection.disconnect();
+        }
+        return true;
     }
 }
