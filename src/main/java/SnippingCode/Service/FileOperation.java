@@ -122,7 +122,7 @@ public class FileOperation {
      * @param codes is ArrayList of Code
      * @return true when save false otherwise
      */
-    public boolean initXmlFile(ArrayList<Code> codes){
+    public boolean initXmlFile(ArrayList<Code> codes) throws JSONException{
         PrintWriter out = null;
         try {
             out = new PrintWriter(pathTest);
@@ -130,16 +130,12 @@ public class FileOperation {
             e.printStackTrace();
             return false;
         }
-        try {
-            out.println("<Codes>");
+        out.println("<Codes>");
 
-            for(Code code : codes) {
-                out.println("<code>");
-                out.println("<name>"+ code.getName()+"</name>");
-                out.println("</code>");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        for(Code code : codes) {
+            out.println("<code>");
+            out.println("<name>"+ code.getName()+"</name>");
+            out.println("</code>");
         }
         out.println("</Codes>");
         out.close();

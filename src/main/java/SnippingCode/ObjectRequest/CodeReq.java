@@ -1,6 +1,8 @@
 package SnippingCode.ObjectRequest;
 
 import SnippingCode.Domain.Code;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,8 +21,13 @@ public class CodeReq {
     public JSONObject getUrlReq(){
         JSONObject json = new JSONObject();
 
-        json.put("username" , username);
-        json.put("password" , password);
+        try {
+          json.put("username" , username);
+          json.put("password" , password);
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
 
         return json;
 

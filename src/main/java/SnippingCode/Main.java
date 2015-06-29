@@ -8,10 +8,11 @@ import SnippingCode.Service.CodesHttpRequest;
 import SnippingCode.Service.FileOperation;
 import SnippingCode.Service.UserHttpRequest;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONException;
 
 /**
  * Created by nasser on 17/06/15.
@@ -32,6 +33,9 @@ public class Main {
             fileOperation.initXmlFile(codesHttpRequest.getAllCode("ahmed", "ahmed", "0"));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
         }
     }
 
@@ -72,6 +76,9 @@ public class Main {
             System.out.println(var);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
         }
     }
 
@@ -88,6 +95,9 @@ public class Main {
             System.out.println(var);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
         }
     }
 
