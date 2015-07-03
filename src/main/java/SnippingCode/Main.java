@@ -39,13 +39,13 @@ public class Main {
         }
     }
 
-    public static void checkParsingCode(){
-        String pathCode = "/home/nasser/Desktop/Project/SnippingCode-Parsing/ahmed.xml";
+    public static void checkParsingCode(String name){
+        String pathCode = "/home/nasser/.SC/codes/" + name;
         fileOperation.parseCodeJsonFile(pathCode).printAll();
     }
 
     public static void getCode(){
-        String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
+        String pathTest = "/home/nasser/.SC/Codes.xml";
         List<Code> codes = fileOperation.parseXmlFile(pathTest);
         codesArray = new ArrayList<Code>();
 
@@ -118,18 +118,18 @@ public class Main {
         userHttpRequest = new UserHttpRequest();
         codesArray = new ArrayList<Code>();
         codesHttpRequest = new CodesHttpRequest();
-
+//
 //        getUserCode();
 //
 //        getCode();
-//
-//        checkParsingCode();
-//
+
+        checkParsingCode("test5");
+
 //        checkUserSignUp();
 //
 //        checkLogin();
-
-        uploadCode();
+//
+//        uploadCode();
     }
 
 
