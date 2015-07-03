@@ -24,9 +24,9 @@ import org.json.JSONObject;
  */
 public class CodesHttpRequest {
 	private ParseJsonObject jsonParse = null;
-    private final String getAllCode = "http://localhost:8080/CodeSnipping/File/view";
-    private final String getCodeByName = "http://localhost:8080/CodeSnipping/File/getFile";
-    private final String upload = "http://localhost:8080/CodeSnipping/File/upload";
+    private final String getAllCode = "http://localhost:8080/CodeSnipping/Code/view";
+    private final String getCodeByName = "http://localhost:8080/CodeSnipping/Code/getFile";
+    private final String upload = "http://localhost:8080/CodeSnipping/Code/upload";
     public CodesHttpRequest(){
         jsonParse = new ParseJsonObject();
     }

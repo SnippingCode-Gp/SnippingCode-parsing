@@ -30,7 +30,6 @@ public class FileOperation {
         pathLinuxCode = pathLinux + "/codes/";
         dirOperation();
     }
-    private final String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
     private final String user = executeCommand("whoami");
     private final String pathLinux;
     private final String pathLinuxCode;
@@ -125,7 +124,7 @@ public class FileOperation {
     public boolean initXmlFile(ArrayList<Code> codes) throws JSONException{
         PrintWriter out = null;
         try {
-            out = new PrintWriter(pathTest);
+            out = new PrintWriter(pathLinux + "/Codes.xml");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;

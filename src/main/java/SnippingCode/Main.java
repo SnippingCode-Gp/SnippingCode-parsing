@@ -30,7 +30,8 @@ public class Main {
     public static void getUserCode(){
 
         try {
-            fileOperation.initXmlFile(codesHttpRequest.getAllCode("ahmed", "ahmed", "0"));
+            ArrayList<Code> codes = codesHttpRequest.getAllCode("ahmed", "ahmed", "0");
+            fileOperation.initXmlFile(codes);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -39,13 +40,13 @@ public class Main {
         }
     }
 
-    public static void checkParsingCode(){
-        String pathCode = "/home/nasser/Desktop/Project/SnippingCode-Parsing/ahmed.xml";
+    public static void checkParsingCode(String name){
+        String pathCode = "/home/nasser/.SC/codes/" + name;
         fileOperation.parseCodeJsonFile(pathCode).printAll();
     }
 
     public static void getCode(){
-        String pathTest = "/home/nasser/Desktop/Project/SnippingCode-Parsing/test.xml";
+        String pathTest = "/home/nasser/.SC/Codes.xml";
         List<Code> codes = fileOperation.parseXmlFile(pathTest);
         codesArray = new ArrayList<Code>();
 
@@ -119,15 +120,15 @@ public class Main {
         codesArray = new ArrayList<Code>();
         codesHttpRequest = new CodesHttpRequest();
 
-//        getUserCode();
-//
-//        getCode();
-//
-//        checkParsingCode();
-//
-//        checkUserSignUp();
-//
-//        checkLogin();
+        getUserCode();
+
+        getCode();
+
+        checkParsingCode("test5");
+
+        checkUserSignUp();
+
+        checkLogin();
 
         uploadCode();
     }
