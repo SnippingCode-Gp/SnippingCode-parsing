@@ -27,8 +27,8 @@ public class Main {
   static CodesHttpRequest codesHttpRequest;
   static UserHttpRequest userHttpRequest;
 
-  private static final String username = "abdelgawad";
-  private static final String password = "123456";
+  private static final String username = "ahmed";
+  private static final String password = "ahmed";
 
   // get user code from server and save to test file xml
   public static void getUserCode() {
@@ -114,23 +114,26 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    parseJsonObject = new ParseJsonObject();
-    fileOperation = new FileOperation();
-    userHttpRequest = new UserHttpRequest();
-    codesArray = new ArrayList<Code>();
-    codesHttpRequest = new CodesHttpRequest();
+      for(int i = 0 ; i < 2 ; i++)
+          System.out.println();
+      System.out.println("************************* main ******************* ");
+      parseJsonObject = new ParseJsonObject();
+      fileOperation = new FileOperation();
+      userHttpRequest = new UserHttpRequest();
+      codesArray = new ArrayList<Code>();
+      codesHttpRequest = new CodesHttpRequest();
 
-    checkUserSignUp();
+//    checkUserSignUp();
+//
+//    try {
+//      uploadCode();
+//    } catch (JSONException e) {
+//      // TODO Auto-generated catch block
+//      e.printStackTrace();
+//    }
     
-    try {
-      uploadCode();
-    } catch (JSONException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    
-    getUserCode();
-
+      getUserCode();
+      System.out.println("Done");
     // getCode();
     //
     // checkParsingCode("test5");
@@ -138,7 +141,9 @@ public class Main {
     
     // checkLogin();
 
-    
+      System.out.println("********************* end main ******************* ");
+      for(int i = 0 ; i < 2 ; i++)
+        System.out.println();
   }
 
 }
