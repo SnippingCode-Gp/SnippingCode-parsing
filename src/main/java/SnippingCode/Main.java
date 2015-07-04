@@ -21,129 +21,131 @@ import org.json.JSONException;
  */
 
 public class Main {
-  static ParseJsonObject parseJsonObject;
-  static FileOperation fileOperation;
-  static ArrayList<Code> codesArray;
-  static CodesHttpRequest codesHttpRequest;
-  static UserHttpRequest userHttpRequest;
+	static ParseJsonObject parseJsonObject;
+	static FileOperation fileOperation;
+	static ArrayList<Code> codesArray;
+	static CodesHttpRequest codesHttpRequest;
+	static UserHttpRequest userHttpRequest;
 
-  private static final String username = "ahmed";
-  private static final String password = "ahmed";
+	private static final String username = "nasser";
+	private static final String password = "ahmed";
 
-  // get user code from server and save to test file xml
-  public static void getUserCode() {
+	// get user code from server and save to test file xml
+	public static void getUserCodeToInitXml() {
 
-    try {
-      ArrayList<Code> codes = codesHttpRequest.getAllCode(username, password,
-          "0");
-      fileOperation.initXmlFile(codes);
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (JSONException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		try {
+			ArrayList<Code> codes = codesHttpRequest.getAllCode(username,
+					password, "0");
+			fileOperation.initXmlFile(codes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-  public static void checkParsingCode(String name) {
-    String pathCode = "/home/" + username + "/.SC/codes/" + name;
-    fileOperation.parseCodeJsonFile(pathCode).printAll();
-  }
+	public static void checkParsingCode(String name) {
+		String pathCode = "/home/" + username + "/.SC/codes/" + name;
+		fileOperation.parseCodeJsonFile(pathCode).printAll();
+	}
 
-  public static void getCode() {
-    String pathTest = "/home/" + username + "/.SC/Codes.xml";
-    List<Code> codes = fileOperation.parseXmlFile(pathTest);
-    codesArray = new ArrayList<Code>();
+	public static void getCode() {
+		List<Code> codes = fileOperation.parseXmlFile();
+		codesArray = new ArrayList<Code>();
 
-    // get from server
-    for (Code item : codes) {
-      CodeReq codeReq = new CodeReq(item, username, password);
-      try {
-        codesArray.add(codesHttpRequest.getCodeByName(codeReq)); // return
-                                                                 // codeDomainParser
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
+		// get from server
+		for (Code item : codes) {
+			CodeReq codeReq = new CodeReq(item, username, password);
+			try {
+				codesArray.add(codesHttpRequest.getCodeByName(codeReq)); // return
+																			// codeDomainParser
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-    for (Code code : codesArray) {
-      fileOperation.saveCodeToFile(code);
-    }
-  }
+		for (Code code : codesArray) {
+			fileOperation.saveCodeToFile(code);
+		}
+	}
 
-  private static void checkUserSignUp() {
-    User user = new User();
-    user.setUsername(username);
-    user.setEmail("ahmednasser1993@gmail.com");
-    user.setFirstName(username);
-    user.setLastName(username);
-    user.setPassword(password);
-    try {
-      int var = userHttpRequest.signUp(user);
-      System.out.println(var);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+	private static void checkUserSignUp() {
+		User user = new User();
+		user.setUsername(username);
+		user.setEmail("ahmednasser1993@gmail.com");
+		user.setFirstName(username);
+		user.setLastName(username);
+		user.setPassword(password);
+		try {
+			int var = userHttpRequest.signUp(user);
+			System.out.println(var);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  private static void checkLogin() {
-    User user = new User();
-    user.setUsername(username);
-    user.setEmail("ahmednassersaleh@gmail.com");
-    user.setFirstName(username);
-    user.setLastName("hamada");
-    user.setPassword(password);
+	private static void checkLogin() {
+		User user = new User();
+		user.setUsername(username);
+		user.setEmail("ahmednassersaleh@gmail.com");
+		user.setFirstName(username);
+		user.setLastName("hamada");
+		user.setPassword(password);
 
-    try {
-      int var = userHttpRequest.login(user);
-      System.out.println(var);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+		try {
+			int var = userHttpRequest.login(user);
+			System.out.println(var);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-  private static void uploadCode() throws JSONException {
-    Code code = new Code();
-    code.setName("test5");
-    code.setCode("ahmed nasser saleh");
-    code.setDescription("ay 7aga feh ay betngan");
-    code.setType("cpp & java");
-    code.setTags("BFS,DFS,MMM,DMN,");
+	private static void uploadCode() throws JSONException {
+		Code code = new Code();
+		code.setName("test5");
+		code.setCode("ahmed nasser saleh");
+		code.setDescription("ay 7aga feh ay betngan");
+		code.setType("cpp & java");
+		code.setTags("BFS,DFS,MMM,DMN,");
 
-    codesHttpRequest.uploadCode(code, username, password);
-  }
+		codesHttpRequest.uploadCode(code, username, password);
+	}
 
-  public static void main(String[] args) {
-      for(int i = 0 ; i < 2 ; i++)
-          System.out.println();
-      System.out.println("************************* main ******************* ");
-      parseJsonObject = new ParseJsonObject();
-      fileOperation = new FileOperation();
-      userHttpRequest = new UserHttpRequest();
-      codesArray = new ArrayList<Code>();
-      codesHttpRequest = new CodesHttpRequest();
+	public static void main(String[] args) {
+		for (int i = 0; i < 2; i++)
+			System.out.println();
+		System.out
+				.println("************************* main ******************* ");
+		parseJsonObject = new ParseJsonObject();
+		fileOperation = new FileOperation();
+		userHttpRequest = new UserHttpRequest();
+		codesArray = new ArrayList<Code>();
+		codesHttpRequest = new CodesHttpRequest();
 
-//    checkUserSignUp();
-//
-//    try {
-//      uploadCode();
-//    } catch (JSONException e) {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
-    
-      getUserCode();
-      System.out.println("Done");
-    // getCode();
-    //
-    // checkParsingCode("test5");
-    //
-    
-    // checkLogin();
+		// checkUserSignUp();
+		//
+		// try {
+		// uploadCode();
+		// } catch (JSONException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
-      System.out.println("********************* end main ******************* ");
-      for(int i = 0 ; i < 2 ; i++)
-        System.out.println();
-  }
+		getUserCodeToInitXml();
+		getCode();
+
+		System.out.println("Done");
+
+		// checkParsingCode("test5");
+		//
+
+		// checkLogin();
+
+		System.out
+				.println("********************* end main ******************* ");
+		for (int i = 0; i < 2; i++)
+			System.out.println();
+	}
 
 }
