@@ -138,8 +138,9 @@ public class CodesHttpRequest {
      * @param username
      * @param password
      * @return true if connection done false if error happen
+     * @throws JSONException 
      */
-    public boolean uploadCode(Code code , String username , String password){
+    public boolean uploadCode(Code code , String username , String password) throws JSONException{
         String targetURL = upload;
 
         JSONObject jsonObject= code.changeToJsonObject(username,password);

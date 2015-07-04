@@ -1,7 +1,9 @@
 package SnippingCode.Domain;
 
 import SnippingCode.ObjectRequest.CodeReq;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -130,7 +132,7 @@ public class Code implements Serializable {
         return null;
     }
 
-    public JSONObject changeToJsonObject(String username , String password){
+    public JSONObject changeToJsonObject(String username , String password) throws JSONException{
         JSONObject object = new JSONObject();
 
 //        object.put("id" , "0");
